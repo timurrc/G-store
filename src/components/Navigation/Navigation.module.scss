@@ -1,0 +1,9 @@
+.navigation {
+  max-width: 1200px;
+  padding: 10px 24px;
+  margin: 0 auto;
+  ul {
+    display: flex;
+    justify-content: space-between;
+  }
+}

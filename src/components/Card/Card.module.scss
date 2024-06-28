@@ -1,0 +1,16 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 10px 20px;
+  cursor: pointer;
+  align-items: center;
+  gap: 12px;
+  h2 {
+    font-size: 12px;
+  }
+  .cardImg {
+    background-color: #f9f9f9;
+    border-radius: 12px 12px 0 0;
+  }
+}
