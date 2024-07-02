@@ -1,35 +1,38 @@
-import styles from "./Home.module.scss";
-import offerImg from "../../assets/offerImg.svg";
+import styles from "../../Styles/Layouts/Home.module.scss";
+import offerImg from "../../Images/offerImg.svg";
 import { useState } from "react";
-import { ICard } from "../../interface/type";
 import Card from "../../components/Card/Card";
 
-import cardImg1 from "../../assets/Card/1item.svg";
 import Footer from "../../components/Footer/Footer";
+import {
+  useGetProductMansQuery,
+  useGetProductsElectronicQuery,
+  useGetProductsJeweleryQuery,
+  useGetProductsQuery,
+} from "../../store/productApi/Productapi";
 const Home = () => {
   const [activeButton, setActiveButton] = useState("All");
   const handleClick = (category) => {
     setActiveButton(category);
   };
-
+  const { data, isLoading, error } = useGetProductsQuery(6);
+  const {
+    data: jewelryData,
+    isLoading: jewelryIsLoading,
+    error: jewelryError,
+  } = useGetProductsJeweleryQuery("");
+  const {
+    data: electronicsData,
+    isLoading: electronicsIsLoading,
+    error: electronicsError,
+  } = useGetProductsElectronicQuery("");
+  const {
+    data: mansData,
+    isLoading: mansIsLoading,
+    error: mansError,
+  } = useGetProductMansQuery("");
   const categories = ["All", "Man's wear", "Electronic", "Jewelry"];
 
-  const data: ICard[] = [
-    {
-      id: 1,
-      img: cardImg1,
-      title: "Marko De lagrange",
-      price: 44.99,
-      category: "All",
-    },
-    {
-      id: 2,
-      img: cardImg1,
-      title: "Marko De lagrange",
-      price: 44.99,
-      category: "Jewelry",
-    },
-  ];
   return (
     <>
       <div className="container">
@@ -59,88 +62,54 @@ const Home = () => {
               </button>
             ))}
           </div>
-          <div className={styles.categoryItem}>
-            {categories[0] ? (
-              <div>
-                {activeButton === "All" ? (
-                  <div>
-                    {data
-                      .filter(
-                        (item) =>
-                          item.category === "All" ||
-                          item.category === activeButton
-                      )
-                      .map((item) => (
-                        <div key={item.id}>
-                          <Card card={item} />
-                        </div>
+          {isLoading ? (
+            "loading.."
+          ) : error ? (
+            "error"
+          ) : (
+            <div className={styles.categoryItems}>
+              {categories[0] ? (
+                <div>
+                  {activeButton === "All" ? (
+                    <div className={styles.categoryItemsList}>
+                      {data?.map((product) => (
+                        <Card key={product.id} product={product} />
                       ))}
-                  </div>
-                ) : activeButton === "Man's wear" ? (
-                  <div>
-                    {data
-                      .filter(
-                        (item) =>
-                          item.category === "Man's wear" ||
-                          item.category === activeButton
-                      )
-                      .map((item) => (
-                        <div key={item.id}>
-                          <Card card={item} />
-                        </div>
+                    </div>
+                  ) : activeButton === "Man's wear" ? (
+                    <div className={styles.categoryItemsList}>
+                      {mansData?.map((product) => (
+                        <Card key={product.id} product={product} />
                       ))}
-                  </div>
-                ) : activeButton === "Electronic" ? (
-                  <div>
-                    {data
-                      .filter(
-                        (item) =>
-                          item.category === "Electronic" ||
-                          item.category === activeButton
-                      )
-                      .map((item) => (
-                        <div key={item.id}>
-                          <Card card={item} />
-                        </div>
+                    </div>
+                  ) : activeButton === "Electronic" ? (
+                    <div className={styles.categoryItemsList}>
+                      {electronicsData?.map((product) => (
+                        <Card key={product.id} product={product} />
                       ))}
-                  </div>
-                ) : activeButton === "Jewelry" ? (
-                  <div>
-                    {data
-                      .filter(
-                        (item) =>
-                          item.category === "Jewelry" ||
-                          item.category === activeButton
-                      )
-                      .map((item) => (
-                        <div key={item.id}>
-                          <Card card={item} />
-                        </div>
+                    </div>
+                  ) : activeButton === "Jewelry" ? (
+                    <div className={styles.categoryItemsList}>
+                      {jewelryData?.map((product) => (
+                        <Card key={product.id} product={product} />
                       ))}
-                  </div>
-                ) : (
-                  <div>
-                    {data
-                      .filter(
-                        (item) =>
-                          item.category === "All" ||
-                          item.category === activeButton
-                      )
-                      .map((item) => (
-                        <div key={item.id}>
-                          <Card card={item} />
-                        </div>
+                    </div>
+                  ) : (
+                    <div>
+                      {data?.map((product: any) => (
+                        <Card key={product.id} product={product} />
                       ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div>0</div>
-            )}
-          </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          )}
         </section>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

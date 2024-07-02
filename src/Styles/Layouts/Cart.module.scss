@@ -1,0 +1,16 @@
+.cartItem {
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  .productImage img {
+    width: 200px;
+    height: 250px;
+  }
+  .removeItem {
+    width: 30px;
+    height: 40;
+  }
+}

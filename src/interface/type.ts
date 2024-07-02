@@ -1,7 +1,8 @@
-export interface ICard {
+export interface IProduct {
   id: number;
-  img: any;
   title: string;
   price: number;
+  description: string;
   category: string;
+  image: string;
 }

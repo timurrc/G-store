@@ -1,0 +1,50 @@
+.card {
+  position: relative;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  max-width: 300px;
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+.cardText {
+  text-align: start;
+  max-width: 250px;
+}
+
+.cardImg img {
+  width: 200px;
+  height: 250px;
+}
+.cardHovered {
+  .addToCart {
+    transform: translateY(-100%);
+  }
+}
+
+.addToCart {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.addToCart button {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px 20px;
+  border: 1px solid #c8c8c8;
+}
+
+.addToCart button img {
+  margin-left: 5px;
+}
