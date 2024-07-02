@@ -5,12 +5,42 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
-  .productImage img {
-    width: 200px;
-    height: 250px;
+  gap: 16px;
+}
+.productImage {
+  width: 200px;
+  height: 250px;
+}
+.removeItem {
+  width: 30px;
+  height: 40;
+}
+.productText {
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  gap: 12px;
+}
+.order {
+  border-top: 2px solid #0000005b;
+
+  display: flex;
+  justify-content: flex-end;
+  .btnPrimary {
+    margin-top: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #4271d1;
+    border-radius: 12px;
+    cursor: pointer;
   }
-  .removeItem {
-    width: 30px;
-    height: 40;
+}
+@media screen and (max-width: 768px) {
+  .productImage {
+    width: 150px;
+    height: 170px;
+  }
+  .productText {
+    font-size: 14px;
   }
 }

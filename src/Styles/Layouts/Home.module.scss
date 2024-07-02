@@ -6,25 +6,31 @@
 }
 .mainOffer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background-color: #f9f9f9;
-  padding: 40px 40px;
+  align-items: center;
+  background-color: #f4f4f4;
   border-radius: 12px;
-  margin-bottom: 20px;
+  padding: 0 40px;
+  margin-bottom: 60px;
+  img {
+    width: 250px;
+    height: 270px;
+  }
   .mainOfferText {
+    text-align: end;
     display: flex;
     flex-direction: column;
-    align-items: end;
-    gap: 6px;
+    gap: 8px;
   }
 }
+
 .categories {
   display: flex;
   flex-direction: column;
   .categorySelect {
     display: flex;
     gap: 12px;
+    flex-flow: row wrap;
     button {
       padding: 5px 15px;
       border: 1px solid #000;
@@ -38,6 +44,38 @@
       align-items: center;
       flex-flow: row wrap;
       gap: 86px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .mainOffer {
+    padding: 20px 10px;
+    margin-bottom: 60px;
+    img {
+      width: 130px !important;
+      height: 100px !important;
+    }
+    .mainOfferText {
+      text-align: end;
+      display: flex;
+      flex-direction: column;
+
+      gap: 4px;
+      h2 {
+        font-size: 14px;
+      }
+      .btnPrimary {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+    }
+  }
+  .categories {
+    .categorySelect {
+      max-width: 400px;
+    }
+    .categoryItems {
+      padding: 0 50px;
     }
   }
 }
